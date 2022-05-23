@@ -1,0 +1,10 @@
+.historias-container {
+    width: 600px;
+    overflow-x: scroll;
+}
+
+.historia, .historia img {
+    display: inline-block;
+    margin-right: 20px;
+}
+
