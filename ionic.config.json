@@ -1,7 +1,8 @@
 {
-  "name": "f",
+  "name": "app",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
