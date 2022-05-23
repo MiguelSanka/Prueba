@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ionic-angular-1FM045": {
+    "ionic-angular-1912006": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -106,10 +106,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ionic-angular-1FM045:build:production"
+              "browserTarget": "ionic-angular-1912006:build:production"
             },
             "development": {
-              "browserTarget": "ionic-angular-1FM045:build:development"
+              "browserTarget": "ionic-angular-1912006:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -117,7 +117,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ionic-angular-1FM045:build"
+            "browserTarget": "ionic-angular-1912006:build"
           }
         },
         "test": {
@@ -145,29 +145,29 @@
         "ionic-cordova-serve": {
           "builder": "@ionic/cordova-builders:cordova-serve",
           "options": {
-            "cordovaBuildTarget": "ionic-angular-1FM045:ionic-cordova-build",
-            "devServerTarget": "ionic-angular-1FM045:serve"
+            "cordovaBuildTarget": "ionic-angular-1912006:ionic-cordova-build",
+            "devServerTarget": "ionic-angular-1912006:serve"
           },
           "configurations": {
             "production": {
-              "cordovaBuildTarget": "ionic-angular-1FM045:ionic-cordova-build:production",
-              "devServerTarget": "ionic-angular-1FM045:serve:production"
+              "cordovaBuildTarget": "ionic-angular-1912006:ionic-cordova-build:production",
+              "devServerTarget": "ionic-angular-1912006:serve:production"
             }
           }
         },
         "ionic-cordova-build": {
           "builder": "@ionic/cordova-builders:cordova-build",
           "options": {
-            "browserTarget": "ionic-angular-1FM045:build"
+            "browserTarget": "ionic-angular-1912006:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ionic-angular-1FM045:build:production"
+              "browserTarget": "ionic-angular-1912006:build:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ionic-angular-1FM045"
+  "defaultProject": "ionic-angular-1912006"
 }
