@@ -8,6 +8,9 @@ import { url } from 'inspector';
 import { Camera } from '@capacitor/camera';
 import { CameraResultType } from '@capacitor/camera';
 import { StorageService } from 'src/services/storage.service';
+import { AuthService } from 'src/services/auth.service';
+import { usuario } from '../models/usuario';
+import { getAuth } from '@firebase/auth';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -15,17 +18,49 @@ import { StorageService } from 'src/services/storage.service';
 })
 export class PostComponent implements OnInit {
 
+  usuarioTime:usuario={
+    id: "",
+    nombre: "",
+    descripcion: "",
+    password: "",
+    email: "",
+    edad: 0,
+  }
+
+  usuarioAuth:any={
+
+  }
   imagen: any;
   isSelected: boolean = false;
   rutaImagen: string |undefined;
 
-  constructor( private db: DbServiceService, private takePic: PhotoService, private storage: StorageService) { }
-  ngOnInit(): void {
-  }
+  constructor( private db: DbServiceService, private takePic: PhotoService, 
+    private storage: StorageService, private authService:AuthService) { 
+      this.logueado=false;
+    }
+  
+    public logueado : boolean;
+
+    ngOnInit(): void {
+      this.usuarioLogueado();
+    }
 
   caption: string = "";
   onSubmit(form: NgForm) {
     this.subir();
+  }
+
+  usuarioLogueado(){
+    this.authService.getUserLogged().subscribe(res=>{
+      if(res != null){
+        this.logueado = true;
+        this.usuarioAuth = res;
+      }
+      else{
+        this.logueado = false;
+      }
+      console.log(res);
+    });
   }
 
   subir() {
@@ -33,17 +68,19 @@ export class PostComponent implements OnInit {
   }
   
   subirFoto(){
-    let nombre = "Juan"
     if(this.imagen != null)
     {
-      this.storage.subirImagen(nombre + " " + Date.now(), this.imagen).then(urlImagen =>
+      this.storage.subirImagen(Date.now().toString(), this.imagen).then(urlImagen =>
         {
+          const auth = getAuth();
+          const user = auth.currentUser;
           console.log(urlImagen);
           let nuevaPub = {
-            "caption": this.caption, 
-            "id": "80", 
-            "src": urlImagen,
-            "usuario": "@PizzaCat"
+            id: (Date.now()).toString(),
+            usuarioID: user?.uid,
+            usuarioNombre: user?.displayName,
+            caption: this.caption,
+            src: urlImagen,
           }
           this.db.postPublicacion(nuevaPub).subscribe(res => {
             console.log(nuevaPub)

@@ -1,0 +1,38 @@
+ion-avatar{
+    width: 45px;
+    height: 45px;
+}
+
+ion-button, .container ion-toolbar{
+    background-color: rgb(23, 32, 42);
+}
+
+.container ion-label{
+    text-align: left;
+    flex: 1 0 80%;
+    background-color: rgb(23, 32, 42);
+}
+#trigger-notificaciones {
+    height: 2em;
+}
+.container{
+    display: flex;
+   align-items: center;
+   background-color: rgb(23, 32, 42);
+}
+
+.perfil, .notificaciones {
+    flex: 1 0 auto;
+    background-color: rgb(23, 32, 42);
+}
+
+footer
+{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}

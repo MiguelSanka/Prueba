@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 ///import { Input } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { DbServiceService } from 'src/services/db-service.service';
-
+import { AuthService } from 'src/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -10,18 +11,31 @@ import { DbServiceService } from 'src/services/db-service.service';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private http: HttpClient, private db: DbServiceService) { }
-
-  usuario:any = {
+  constructor(private ruta: ActivatedRoute, private http: HttpClient, private db: DbServiceService, private authService:AuthService) { 
+    this.logueado=false;
   }
-  
+
+  public logueado : boolean;
+  public usuario:any = {
+  }
+   UID: string = this.ruta.snapshot.params['UID'];
+
   ngOnInit(): void {
-    this.db.getDatosUsuario().subscribe((res: any)=>{
-      this.usuario = res;
-    })
+    this.usuarioLogueado();
   }
 
-  
+  usuarioLogueado(){
+    this.authService.getUserLogged().subscribe(res=>{
+      if(res != null){
+        this.logueado = true;
+        this.usuario = res;
+      }
+      else{
+        this.logueado = false;
+      }
+      console.log(res);
+    });
+  }
 
   editando = false;
 

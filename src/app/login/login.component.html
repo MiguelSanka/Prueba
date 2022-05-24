@@ -1,0 +1,23 @@
+<ion-content>
+    <ion-card>
+      <ion-card-content>
+        <form>
+            <ion-item lines="full">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input size="12" type="text" required [(ngModel)]="usuario.email" name="user"></ion-input>
+            </ion-item>
+            <ion-item lines="full">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input type="password" required [(ngModel)]="usuario.password" name="pass"></ion-input>
+            </ion-item>
+            <ion-row>
+              <ion-col>
+                <ion-button (click)="ingresar()" color="danger" expand="block">Ingresar</ion-button>
+                <ion-button (click)="ingresarConGoogle()" color="danger" expand="block">Ingresar con Google</ion-button>
+                <a class="small-text" [routerLink]="['/register']">Forgot Password?</a>
+              </ion-col>
+            </ion-row>
+          </form>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

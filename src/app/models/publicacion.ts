@@ -1,7 +1,8 @@
 export interface publicacion {
-    caption: string,
     id: string,
+    usuarioID:string,
+    usuarioNombre: string,
+    caption: string,
     src: string,
-    usuario: string,
-    index: number
+    index: number,
 }

@@ -23,6 +23,10 @@ import { HistoriaContenidosComponent } from './historia-contenidos/historia-cont
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { PublicacionUsuarioComponent } from './publicacion-usuario/publicacion-usuario.component';
+import { LoginComponent } from './login/login.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { RegisterComponent } from './register/register.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,10 @@ import { PublicacionUsuarioComponent } from './publicacion-usuario/publicacion-u
     PopoverComponent,
     PostComponent,
     HistoriasComponent,
-    HistoriaContenidosComponent
+    HistoriaContenidosComponent,
+    LoginComponent,
+    RegisterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +56,7 @@ import { PublicacionUsuarioComponent } from './publicacion-usuario/publicacion-u
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent], 

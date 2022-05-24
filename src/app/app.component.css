@@ -1,4 +1,9 @@
-ion-avatar{
+ion-button, ion-input
+{
+    margin-top: 3;
+}
+
+/*ion-avatar{
     width: 45px;
     height: 45px;
 }
@@ -31,4 +36,6 @@ ion-button, .container ion-toolbar, ion-title{
 .perfil, .notificaciones {
     flex: 1 0 auto;
     background-color: black;
-}
+}*/
+
+

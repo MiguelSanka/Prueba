@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { DbServiceService } from 'src/services/db-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -9,7 +10,8 @@ import { DbServiceService } from 'src/services/db-service.service';
 })
 export class FeedComponent implements OnInit {
 
-  constructor(private http: HttpClient, private db: DbServiceService) { }
+  rutaPub: string = this.ruta.snapshot.params['UID'];
+  constructor(private http: HttpClient, private db: DbServiceService, private ruta: ActivatedRoute) { }
 
   publicaciones:any = []
   keys: any = []

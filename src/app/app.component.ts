@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-raiz',
@@ -8,13 +10,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'ionic-angular-1912006';
 
-  imagenes = [
-    "assets/perrillo.jpeg",
-    "assets/perrillo.jpeg",
-    "assets/perrillo.jpeg",
-    "assets/perrillo.jpeg",
-    "assets/perrillo.jpeg"
-  ];
 
   
 }
