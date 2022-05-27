@@ -11,15 +11,17 @@ import { PostComponent } from './post/post.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { AppComponent } from './app.component';
+import { MapComponent } from './map/map.component';
 const routes: Routes = [
-  { path: 'header/:UID', component: AppComponent },
-  { path: 'header/:UID/perfil', component: PerfilComponent },
-  {path: 'header/:UID/feed', component: FeedComponent},
-  {path: 'header/:UID/post', component: FeedComponent},
+  { path: 'feed', component: FeedComponent },
+  { path: 'perfil', component: PerfilComponent },
+  {path: 'post', component: PostComponent},
+  {path: 'map', component: MapComponent},
   {path:'login', component: LoginComponent},
   {path:'register', component: RegisterComponent},
   {path: 'publicacion-usuario/:index', component: PublicacionUsuarioComponent},
   {path: 'publicacion/:index', component: PublicacionComponent},
+  {path: '**', component: LoginComponent },
 ];
 
 @NgModule({

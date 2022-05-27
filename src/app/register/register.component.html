@@ -22,6 +22,9 @@
               <ion-label position="floating">Edad</ion-label>
               <ion-input size="12" type="number" required [(ngModel)]="usuario.edad" name="age"></ion-input>
             </ion-item>
+            <ion-button (click)="tomarFoto()">Seleccionar foto</ion-button>
+            <img src="{{imagen}}" alt="">
+
             <ion-row>
               <ion-col>
                 <ion-button (click)="registrar()" color="danger" expand="block">Registrarse</ion-button>

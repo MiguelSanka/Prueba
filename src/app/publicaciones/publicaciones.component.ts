@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DbServiceService } from 'src/services/db-service.service';
 import { publicacion } from '../models/publicacion';
+import { getAuth } from '@firebase/auth';
 @Component({
   selector: 'app-publicaciones',
   templateUrl: './publicaciones.component.html',
@@ -27,13 +28,18 @@ export class PublicacionesComponent implements OnInit {
 
   cargarPublicaciones()
   {
-    this.db.getPublicacionesUsuario().subscribe((res: any)=>{
+    this.db.getPublicaciones().subscribe((res: any)=>{
       const pubRes:any = res;
+      const auth = getAuth();
+       const user = auth.currentUser;
        const pubArray = Object.keys(res).forEach((key:any) =>{
          if(pubRes[key] != null)
          {
-          (this.publicacionesU).push(pubRes[key]);
-          (this.keys).push(key);
+           if(pubRes[key].usuarioID == user?.uid)
+           {
+            (this.publicacionesU).push(pubRes[key]);
+            (this.keys).push(key);
+           }
          }
        })
 

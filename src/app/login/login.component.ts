@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuth } from '@firebase/auth';
 import { AuthService } from 'src/services/auth.service';
+import { DbServiceService } from 'src/services/db-service.service';
 
 @Component({
   selector: 'app-login',
@@ -15,21 +16,29 @@ export class LoginComponent implements OnInit {
     password:''
   }
 
-  constructor(private authService:AuthService, private router: Router){}
+  constructor(private authService:AuthService, private router: Router, private db: DbServiceService){
+  }
   ngOnInit(): void {
   }
+
 
   ingresar()
   {
     console.log(this.usuario);
     const {email, password} = this.usuario;
     this.authService.login(email, password).then(res=>{
-      console.log("usuario logeado", res)
-      const auth = getAuth();
-      const user = auth.currentUser;
-      this.router.navigateByUrl('/header/' + user?.uid + '/feed')
-    } )
+      if(res != null)
+      {
+        console.log("usuario logeado", res)
+        this.router.navigateByUrl('/perfil')
+      }
+      else
+      {
+        alert("error al ingresar");
+      }
+    })
   }
+
 
 
   ingresarConGoogle()

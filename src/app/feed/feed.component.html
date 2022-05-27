@@ -1,4 +1,4 @@
-<ion-content mode="ios">
+<ion-content mode="ios" *ngIf="userLogged|async; else elseBlock">
     <ion-grid>
         <ion-row>
             <ion-col size-md="8" offset-md="2">
@@ -9,18 +9,18 @@
     <ion-grid>
         <ion-row *ngFor="let publicacion of publicaciones">
             <ion-col>
-                <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+                <div style="display: flex; align-items: center; justify-content: center;">
                     <ion-card>
                         <ion-card-header>
                             <ion-grid>
                                 <ion-row>
                                     <ion-col size="1">
                                         <ion-avatar>
-                                            <img [src]="publicacion.src" alt="">
+                                            <img [src]="publicacion.usuarioImagen" alt="">
                                         </ion-avatar>
                                     </ion-col>
                                     <ion-col size="8">
-                                        <strong> {{publicacion.usuario}} </strong>
+                                        <strong> {{publicacion.usuarioNombre}} </strong>
                                     </ion-col>
                                     <ion-col size="1">
                                         <ion-button color="success" (click)="editar()">
@@ -53,7 +53,7 @@
                             </ion-grid>
                         </ion-card-header>
                         <ion-card-content>
-                            <img src= {{publicacion.src}} alt="" height="700px" [routerLink]="['/publicacion', publicacion.index]">
+                            <img class="imagen" src= {{publicacion.src}} alt="" [routerLink]="['/publicacion', publicacion.index]">
                             <p class="caption">{{publicacion.caption}}</p>
                         </ion-card-content>
                         <div>
@@ -80,3 +80,6 @@
         </ion-row>
     </ion-grid>
 </ion-content>
+<ng-template #elseBlock>
+    error al ingresar
+</ng-template>

@@ -5,11 +5,15 @@ ion-img::part(image) {
     width: 100%;
     text-align: center;
 }
+.container-perfil
+{
+  margin-top:115px;
+}
 
 .container-img {
     position: relative;
 }
-.fotoperfil {
+.fotoperfil{
     border-radius: 50%;
     width: 60px;
     position: absolute;

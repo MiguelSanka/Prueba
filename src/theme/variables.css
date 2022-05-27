@@ -4,3 +4,12 @@
 
 /* To quickly generate your own theme, check out the color generator */
 /* https://ionicframework.com/docs/theming/color-generator */
+ion-content{
+
+    --ion-background-color: white;
+}
+
+ion-toolbar
+{
+    --ion-background-color: black;
+}

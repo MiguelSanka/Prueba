@@ -3,14 +3,19 @@ ion-avatar{
     height: 45px;
 }
 
-ion-button, .container ion-toolbar{
-    background-color: rgb(23, 32, 42);
+ion-button, .container ion-toolbar, ion-title,ion-col, ion-row, ion-grid{
+    background-color: black;
 }
 
+
+.title
+{
+    font-size: 25px;
+}
 .container ion-label{
     text-align: left;
     flex: 1 0 80%;
-    background-color: rgb(23, 32, 42);
+    background-color: black;
 }
 #trigger-notificaciones {
     height: 2em;
@@ -18,21 +23,11 @@ ion-button, .container ion-toolbar{
 .container{
     display: flex;
    align-items: center;
-   background-color: rgb(23, 32, 42);
+   background-color: black;
 }
 
 .perfil, .notificaciones {
     flex: 1 0 auto;
-    background-color: rgb(23, 32, 42);
-}
-
-footer
-{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
+    background-color: black;
+    border: 50px;
 }

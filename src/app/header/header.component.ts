@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { timeStamp } from 'console';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +10,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private ruta: ActivatedRoute) { }
+  constructor(private ruta: Router, private auth: AuthService) { }
 
-  UID: string = this.ruta.snapshot.params['UID'];
   ngOnInit(): void {
   }
 
+  cerrarSesion()
+  {
+    this.auth.logOut();
+    this.ruta.navigateByUrl('/login');
+    
+  }
+  userLogged=this.auth.getUserLogged();
 }

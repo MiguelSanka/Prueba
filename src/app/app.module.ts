@@ -6,7 +6,7 @@ import { FeedComponent } from './feed/feed.component';
 import { IonicModule } from '@ionic/angular';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PublicacionesComponent } from './publicaciones/publicaciones.component';
-
+import { MapComponent } from './map/map.component';
 import { FormsModule } from '@angular/forms';
 import { RoutesModule } from './routes.module';
 import { GridComponent } from './grid/grid.component';
@@ -28,7 +28,10 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { RegisterComponent } from './register/register.component';
 import { HeaderComponent } from './header/header.component';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     FeedComponent,
@@ -45,7 +48,8 @@ import { HeaderComponent } from './header/header.component';
     HistoriaContenidosComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent
+    HeaderComponent, 
+    MapComponent,
   ],
   imports: [
     BrowserModule,

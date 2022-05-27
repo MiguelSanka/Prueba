@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { DbServiceService } from 'src/services/db-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/services/auth.service';
+import { ThisReceiver } from '@angular/compiler';
+import { getAuth } from '@firebase/auth';
 
 @Component({
   selector: 'app-feed',
@@ -10,9 +13,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FeedComponent implements OnInit {
 
-  rutaPub: string = this.ruta.snapshot.params['UID'];
-  constructor(private http: HttpClient, private db: DbServiceService, private ruta: ActivatedRoute) { }
 
+  constructor(private http: HttpClient, private db: DbServiceService, 
+    private ruta: ActivatedRoute, private auth: AuthService) { }
+
+  IUD: string = this.ruta.snapshot.params['UID'];
   publicaciones:any = []
   keys: any = []
   ngOnInit(): void {
@@ -24,10 +29,16 @@ export class FeedComponent implements OnInit {
     this.db.getPublicaciones().subscribe(res => {
        const pubRes:any = res;
        const pubArray = Object.keys(res).forEach((key:any) =>{
+       const auth = getAuth();
+       const user = auth.currentUser;
          if(pubRes[key] != null)
          {
-          (this.publicaciones).push(pubRes[key]);
-          (this.keys).push(key);
+           if(pubRes[key].usuarioID != user?.uid)
+           {
+            (this.publicaciones).push(pubRes[key]);
+            (this.keys).push(key);
+            console.log(pubRes[key].usuarioID)
+           }
          }
        })
 
@@ -61,5 +72,8 @@ export class FeedComponent implements OnInit {
       console.log("Se actualizó la BD")
     });
   }
+
+  userLogged=this.auth.getUserLogged();
+
 
 }

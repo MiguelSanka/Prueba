@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { DbServiceService } from 'src/services/db-service.service';
 import { AuthService } from 'src/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { usuario } from '../models/usuario';
+import { getAuth } from '@firebase/auth';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -11,33 +13,51 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private ruta: ActivatedRoute, private http: HttpClient, private db: DbServiceService, private authService:AuthService) { 
-    this.logueado=false;
+  constructor(private ruta: ActivatedRoute, private http: HttpClient, private db: DbServiceService, private auth:AuthService) { 
   }
 
-  public logueado : boolean;
-  public usuario:any = {
-  }
    UID: string = this.ruta.snapshot.params['UID'];
 
+  usuarios: any = []
+  datosUsuario: usuario;
+  obtenerDatosUsuario()
+  {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    this.db.getDatosUsuarios().subscribe(res=> {
+      const pubRes:any = res;
+      const pubArray = Object.keys(res).forEach((key:any) =>{
+        if(pubRes[key] != null)
+        {
+          if(pubRes[key].usuarioID == user?.uid)
+          {
+           (this.usuarios).push(pubRes[key])
+          }
+         }
+       })
+
+       for(let i=0; i<this.usuarios.length; i++)
+       {
+        if(this.usuarios[i].usuarioID == user?.uid)
+        {
+          this.datosUsuario = this.usuarios[i]
+          break;
+        }
+       }
+       console.log(this.datosUsuario)
+    })
+
+  }
+
+
+  
   ngOnInit(): void {
-    this.usuarioLogueado();
+   this.obtenerDatosUsuario()
   }
 
-  usuarioLogueado(){
-    this.authService.getUserLogged().subscribe(res=>{
-      if(res != null){
-        this.logueado = true;
-        this.usuario = res;
-      }
-      else{
-        this.logueado = false;
-      }
-      console.log(res);
-    });
-  }
-
+  userLogged=this.auth.getUserLogged();
   editando = false;
+  Nombre:string ="hola";
 
   toggleEditar(): void {
     this.editando = !this.editando;
@@ -45,9 +65,9 @@ export class PerfilComponent implements OnInit {
 
   @Input() bio: string = "";
 
-  guardarBio(): void {
+  /*guardarBio(): void {
     this.usuario.descripcion = this.bio;
-  }  
+  } */
 
   vistaGrid = false;
 

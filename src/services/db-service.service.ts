@@ -14,14 +14,6 @@ export class DbServiceService {
     return this.http.get('https://insta-base-0032-default-rtdb.firebaseio.com/usuario/publicaciones.json');
   }
 
-  getDatosUsuario(): any{
-    return this.http.get('https://insta-base-0032-default-rtdb.firebaseio.com/usuario.json');
-  }
-
-  getPublicaciones():any
-  {
-    return this.http.get('https://insta-branch-default-rtdb.firebaseio.com/publicaciones.json');
-  }
 
   getPublicacionDetalle(idPublicacion):any
   {
@@ -57,12 +49,19 @@ export class DbServiceService {
     return this.http.post('https://insta-branch-default-rtdb.firebaseio.com/usuarios.json', usuario)
   }
 
-  uploadPublicacion(publicacion: publicacion)
+  uploadPublicacion(publicacion: any)
   {
     return this.http.post('https://insta-branch-default-rtdb.firebaseio.com/publicaciones.json', publicacion)
   }
 
+  getPublicaciones():any
+  {
+    return this.http.get('https://insta-branch-default-rtdb.firebaseio.com/publicaciones.json');
+  }
 
+  getDatosUsuarios(): any{
+    return this.http.get('https://insta-branch-default-rtdb.firebaseio.com/usuarios.json');
+  }
 
 
 }

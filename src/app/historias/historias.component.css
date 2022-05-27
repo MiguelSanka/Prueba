@@ -1,6 +1,7 @@
 .historias-container {
     width: 600px;
     overflow-x: scroll;
+    margin-top: 25px;
 }
 
 .historia, .historia img {

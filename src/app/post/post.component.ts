@@ -18,14 +18,7 @@ import { getAuth } from '@firebase/auth';
 })
 export class PostComponent implements OnInit {
 
-  usuarioTime:usuario={
-    id: "",
-    nombre: "",
-    descripcion: "",
-    password: "",
-    email: "",
-    edad: 0,
-  }
+
 
   usuarioAuth:any={
 
@@ -35,7 +28,7 @@ export class PostComponent implements OnInit {
   rutaImagen: string |undefined;
 
   constructor( private db: DbServiceService, private takePic: PhotoService, 
-    private storage: StorageService, private authService:AuthService) { 
+    private storage: StorageService, private auth:AuthService) { 
       this.logueado=false;
     }
   
@@ -51,7 +44,7 @@ export class PostComponent implements OnInit {
   }
 
   usuarioLogueado(){
-    this.authService.getUserLogged().subscribe(res=>{
+    this.auth.getUserLogged().subscribe(res=>{
       if(res != null){
         this.logueado = true;
         this.usuarioAuth = res;
@@ -81,8 +74,10 @@ export class PostComponent implements OnInit {
             usuarioNombre: user?.displayName,
             caption: this.caption,
             src: urlImagen,
+            usuarioImagen: user?.photoURL,
+            index: ""
           }
-          this.db.postPublicacion(nuevaPub).subscribe(res => {
+          this.db.uploadPublicacion(nuevaPub).subscribe(res => {
             console.log(nuevaPub)
           })
           alert("foto subida exitosamente")
@@ -101,6 +96,7 @@ export class PostComponent implements OnInit {
 
       this.imagen=image.dataUrl;
   }
+  userLogged=this.auth.getUserLogged();
 
 
   /*seleccionarImagen($event: any){
