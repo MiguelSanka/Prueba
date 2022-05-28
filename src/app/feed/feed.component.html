@@ -1,0 +1,86 @@
+<ion-content mode="ios" *ngIf="userLogged|async; else elseBlock">
+    <div class="historias">
+    <ion-grid class="historias">
+        <ion-row>
+            <ion-col size-md="8" offset-md="2">
+                <app-historias></app-historias>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>
+    <ion-grid>
+        <ion-row *ngFor="let publicacion of publicaciones">
+            <ion-col>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <ion-card>
+                        <ion-card-header>
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size="1">
+                                        <ion-avatar>
+                                            <img [src]="publicacion.usuarioImagen" alt="">
+                                        </ion-avatar>
+                                    </ion-col>
+                                    <ion-col size="1">
+
+                                    </ion-col>
+                                    <ion-col size="7">
+                                        <strong>{{publicacion.usuarioNombre}} </strong>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                            <ion-icon font-size="156px" name="create" (click)="editar()"></ion-icon>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                            <ion-icon font-size="156px" (click)="borrar(publicacion.index)" name="trash" ></ion-icon>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <ion-button fill="translucent" id="trigger-popup--{{publicacion.index}}" class="trigger">
+                                            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+                                        </ion-button>
+                                        <ion-popover trigger="trigger-popup--{{publicacion.index}}">
+                                            <ng-template>
+                                                <app-popover></app-popover>
+                                            </ng-template>
+                                        </ion-popover>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <div class="editar" *ngIf="editado">
+                                        <ion-input name="first" placeholder="Editar caption: Ejemplo: Hola, mundo" [(ngModel)]="publicacion.caption"></ion-input>
+                                        {{publicacion.caption}}
+                                        <ion-button (click)="guardar(publicacion.index, publicacion)">Guardar</ion-button>
+                                    </div>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <img class="imagen" src= {{publicacion.src}} alt="" [routerLink]="['/publicacion', publicacion.index]">
+                            <p class="caption">{{publicacion.caption}}</p>
+                        </ion-card-content>
+                        <div>
+                            <ion-grid>
+                                <ion-row>
+                                    <ion-col size="1">
+                                            <ion-icon name="heart-outline" id="{{publicacion.index}}" (click)="like(publicacion.index)" ></ion-icon>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <ion-icon name="chatbubble-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col size="1">
+                                        <ion-icon name="paper-plane-outline"></ion-icon>
+                                    </ion-col>
+                                    <ion-col size="1" offset="8">
+                                        <ion-icon name="bookmark-outline"></ion-icon>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div> 
+                    </ion-card>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+<ng-template #elseBlock>
+    error al ingresar
+</ng-template>

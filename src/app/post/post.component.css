@@ -1,0 +1,8 @@
+#inputFile{
+    display: none;
+}
+
+ion-content, ion-card
+{
+    margin-top: 200px;
+}

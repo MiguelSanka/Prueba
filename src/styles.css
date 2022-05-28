@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+ion-app, ion-grid, ion-card-header, ion-card-content, ion-column, ion-row, 
+ion-toolbar, div, ion-header, ion-title, router-outlet{
+    background-color: rgb(23, 32, 42);
+    color: white;
+    font-size: 15px;
+}
+

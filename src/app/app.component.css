@@ -1,0 +1,42 @@
+ion-button, ion-input
+{
+    margin-top: 3;
+}
+
+
+/*ion-avatar{
+    width: 45px;
+    height: 45px;
+}
+
+.container
+{
+    background-color: black;
+    background: black;
+}
+
+ion-button, .container ion-toolbar, ion-title{
+    background-color: black;
+    background: black;
+}
+
+.container ion-label{
+    text-align: left;
+    flex: 1 0 80%;
+    background-color: black;
+}
+#trigger-notificaciones {
+    height: 2em;
+}
+.container{
+    display: flex;
+   align-items: center;
+   background-color: black;
+}
+
+.perfil, .notificaciones {
+    flex: 1 0 auto;
+    background-color: black;
+}*/
+
+

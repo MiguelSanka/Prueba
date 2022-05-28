@@ -1,0 +1,63 @@
+<ion-content *ngIf="userLogged|async as user; else elseBlock">
+
+<div class="container-perfil">
+<ion-grid>
+    <ion-row>
+        <ion-col>
+            <div class="container-img">
+                <img [src]="user.photoURL" alt="" class="fotoperfil">
+            <div class="historia"></div>
+            </div>
+        </ion-col>
+        <ion-col>
+            <p><strong>11</strong></p>
+            <p>Posts</p>
+        </ion-col>
+        <ion-col>
+            <p><strong>13</strong></p>
+            <p>Followers</p>
+        </ion-col>
+        <ion-col>
+            <p><strong>11</strong></p>
+            <p>Following</p>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <p>{{user.displayName}}</p>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+            <ion-button class="boton-grid" color="dark" (click)="toggleEditar()">
+                Editar perfil
+            </ion-button>
+    </ion-row>
+    <ion-row *ngIf="editando">
+        <p>Nueva Bio: {{bio}}</p>
+        <ion-input name="first" [(ngModel)]="bio" class="borde-input"></ion-input>
+        <ion-button (click)="tomarFoto()">Cambiar foto</ion-button>
+        <ion-button (click)="guardarFoto()" color="dark" >Guardar</ion-button>
+        <ion-button color="dark" (click)="toggleEditar()">Cancelar</ion-button>
+    </ion-row>
+    <ion-row>
+        
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <ion-button (click)="toggleVista()" color="dark" class="boton-grid"><ion-icon name="grid-outline"></ion-icon></ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button  (click)="toggleVista()" color="dark" class="boton-grid"><ion-icon name="pricetag-outline"></ion-icon></ion-button>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+    
+    <app-grid *ngIf="!vistaGrid"></app-grid>
+    <app-publicaciones *ngIf="vistaGrid"></app-publicaciones>
+   
+</div>
+</ion-content>
+<ng-template #elseBlock>
+    <app-login></app-login>
+</ng-template>
+

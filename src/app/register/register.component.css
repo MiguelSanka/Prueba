@@ -1,0 +1,46 @@
+
+.fotoperfil{
+  position: relative;          /* where the next element will be automatically positioned */
+  display: inline-block;       /* causes element width to shrink to fit content */
+  left: 50%;                   /* moves left side of image/element to center of parent element */
+  transform: translate(-50%);
+  zoom:10;
+}
+
+ion-item
+{
+  height: 70px;
+ padding-top: 10px;
+ /*border-radius: 12px;*/
+ border-top-left-radius: 12px;
+ border-bottom-left-radius: 12px;
+ border-top-right-radius: 12px;
+ border-bottom-right-radius: 12px;
+}
+
+
+ion-card
+{
+  width: 420px;
+  padding-top: 20px;
+}
+
+
+ion-card-content
+{
+  width: 100%;
+}
+
+.img{
+  position: relative;          /* where the next element will be automatically positioned */
+  display: inline-block;       /* causes element width to shrink to fit content */
+  left: 50%;                   /* moves left side of image/element to center of parent element */
+  transform: translate(-50%);
+  zoom:10;
+}
+
+
+ion-icon
+{
+  position: relative;
+}

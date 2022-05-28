@@ -1,0 +1,23 @@
+/* Ionic Variables and Theming. */
+/* This is just a placeholder file For more info, please see: */
+/* https://ionicframework.com/docs/theming/basics */
+
+/* To quickly generate your own theme, check out the color generator */
+/* https://ionicframework.com/docs/theming/color-generator */
+ion-content{
+
+    --ion-background-color: rgb(23, 32, 42);
+}
+
+ion-toolbar
+{
+    --ion-background-color: black;
+}
+
+ion-item
+{
+    --ion-background-color:white;
+}
+
+
+
